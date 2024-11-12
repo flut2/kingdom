@@ -1,0 +1,185 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Client",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/client/zig-out/bin/Kingdom",
+            "args": [],
+            "cwd": "${workspaceFolder}/client/zig-out/bin",
+            "preLaunchTask": "Debug Client"
+        },
+        {
+            "name": "Debug Client (Tracy)",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/client/zig-out/bin/Kingdom",
+            "args": [],
+            "cwd": "${workspaceFolder}/client/zig-out/bin",
+            "preLaunchTask": "Debug Client (Tracy)"
+        },
+        {
+            "name": "ReleaseSafe Client",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/client/zig-out/bin/Kingdom",
+            "args": [],
+            "cwd": "${workspaceFolder}/client/zig-out/bin",
+            "preLaunchTask": "ReleaseSafe Client"
+        },
+        {
+            "name": "ReleaseFast Client",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/client/zig-out/bin/Kingdom",
+            "args": [],
+            "cwd": "${workspaceFolder}/client/zig-out/bin",
+            "preLaunchTask": "ReleaseFast Client"
+        },
+        {
+            "name": "ReleaseSmall Client",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/client/zig-out/bin/Kingdom",
+            "args": [],
+            "cwd": "${workspaceFolder}/client/zig-out/bin",
+            "preLaunchTask": "ReleaseSmall Client"
+        },
+        {
+            "name": "Debug Client (Windows)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/client/zig-out/bin/Kingdom",
+            "args": [],
+            "cwd": "${workspaceFolder}/client/zig-out/bin",
+            "preLaunchTask": "Debug Client (Windows)"
+        },
+        {
+            "name": "Debug Client (Tracy, Windows)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/client/zig-out/bin/Kingdom",
+            "args": [],
+            "cwd": "${workspaceFolder}/client/zig-out/bin",
+            "preLaunchTask": "Debug Client (Tracy, Windows)"
+        },
+        {
+            "name": "ReleaseSafe Client (Windows)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/client/zig-out/bin/Kingdom",
+            "args": [],
+            "cwd": "${workspaceFolder}/client/zig-out/bin",
+            "preLaunchTask": "ReleaseSafe Client (Windows)"
+        },
+        {
+            "name": "ReleaseFast Client (Windows)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/client/zig-out/bin/Kingdom",
+            "args": [],
+            "cwd": "${workspaceFolder}/client/zig-out/bin",
+            "preLaunchTask": "ReleaseFast Client (Windows)"
+        },
+        {
+            "name": "ReleaseSmall Client (Windows)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/client/zig-out/bin/Kingdom",
+            "args": [],
+            "cwd": "${workspaceFolder}/client/zig-out/bin",
+            "preLaunchTask": "ReleaseSmall Client (Windows)"
+        },
+        {
+            "name": "Debug Server",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/server/zig-out/bin/Kingdom",
+            "args": [],
+            "cwd": "${workspaceFolder}/server/zig-out/bin",
+            "preLaunchTask": "Debug Server"
+        },
+        {
+            "name": "Debug Server (Tracy)",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/server/zig-out/bin/Kingdom",
+            "args": [],
+            "cwd": "${workspaceFolder}/server/zig-out/bin",
+            "preLaunchTask": "Debug Server (Tracy)"
+        },
+        {
+            "name": "ReleaseSafe Server",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/server/zig-out/bin/Kingdom",
+            "args": [],
+            "cwd": "${workspaceFolder}/server/zig-out/bin",
+            "preLaunchTask": "ReleaseSafe Server"
+        },
+        {
+            "name": "ReleaseFast Server",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/server/zig-out/bin/Kingdom",
+            "args": [],
+            "cwd": "${workspaceFolder}/server/zig-out/bin",
+            "preLaunchTask": "ReleaseFast Server"
+        },
+        {
+            "name": "ReleaseSmall Server",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/server/zig-out/bin/Kingdom",
+            "args": [],
+            "cwd": "${workspaceFolder}/server/zig-out/bin",
+            "preLaunchTask": "ReleaseSmall Server"
+        },
+        {
+            "name": "Debug Server (Windows)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/server/zig-out/bin/Kingdom",
+            "args": [],
+            "cwd": "${workspaceFolder}/server/zig-out/bin",
+            "preLaunchTask": "Debug Server (Windows)"
+        },
+        {
+            "name": "Debug Server (Tracy, Windows)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/server/zig-out/bin/Kingdom",
+            "args": [],
+            "cwd": "${workspaceFolder}/server/zig-out/bin",
+            "preLaunchTask": "Debug Server (Tracy, Windows)"
+        },
+        {
+            "name": "ReleaseSafe Server (Windows)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/server/zig-out/bin/Kingdom",
+            "args": [],
+            "cwd": "${workspaceFolder}/server/zig-out/bin",
+            "preLaunchTask": "ReleaseSafe Server (Windows)"
+        },
+        {
+            "name": "ReleaseFast Server (Windows)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/server/zig-out/bin/Kingdom",
+            "args": [],
+            "cwd": "${workspaceFolder}/server/zig-out/bin",
+            "preLaunchTask": "ReleaseFast Server (Windows)"
+        },
+        {
+            "name": "ReleaseSmall Server (Windows)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/server/zig-out/bin/Kingdom",
+            "args": [],
+            "cwd": "${workspaceFolder}/server/zig-out/bin",
+            "preLaunchTask": "ReleaseSmall Server (Windows)"
+        },
+    ]
+}

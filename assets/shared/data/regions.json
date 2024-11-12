@@ -1,0 +1,22 @@
+[
+    {
+        "id": 0,
+        "name": "Spawn",
+        "color": "0x00FF00"
+    },
+    {
+        "id": 1,
+        "name": "Store 1",
+        "color": "0xFFDCF3"
+    },
+    {
+        "id": 2,
+        "name": "Store 2",
+        "color": "0xD9FFF3"
+    },
+    {
+        "id": 3,
+        "name": "Store 3",
+        "color": "0xC6B1FF"
+    }
+]

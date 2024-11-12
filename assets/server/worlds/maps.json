@@ -1,0 +1,43 @@
+[
+    {
+        "id": -1,
+        "name": "The Retrieve",
+        "file": "retrieve.map",
+        "light": {
+            "day_intensity": 0.1,
+            "night_intensity": 0.4,
+            "color": "0x000000"
+        }
+    },
+    {
+        "name": "Stash",
+        "file": "stash.map",
+        "portal_name": "Stash",
+        "map_type": "stash",
+        "light": {
+            "day_intensity": 0.1,
+            "night_intensity": 0.4,
+            "color": "0x000000"
+        }
+    },
+    {
+        "name": "Realm",
+        "file": "realm.map",
+        "portal_name": "Realm",
+        "map_type": "realm",
+        "light": {
+            "day_intensity": 0.1,
+            "night_intensity": 0.4,
+            "color": "0x000000"
+        }
+    },
+    {
+        "name": "Crimson Chasm",
+        "file": "crimson_chasm.map",
+        "portal_name": "Crimson Chasm",
+        "light": {
+            "intensity": 0.5,
+            "color": "0x3D1D16"
+        }
+    }
+]

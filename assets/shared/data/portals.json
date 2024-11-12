@@ -1,0 +1,33 @@
+[
+    {
+        "id": 0,
+        "name": "Stash",
+        "textures": [
+            {
+                "sheet": "portals",
+                "index": 0
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "Crimson Chasm",
+        "textures": [
+            {
+                "sheet": "portals",
+                "index": 1
+            }
+        ],
+        "draw_on_ground": true
+    },
+    {
+        "id": 2,
+        "name": "Realm",
+        "textures": [
+            {
+                "sheet": "portals_big",
+                "index": 0
+            }
+        ]
+    }
+]

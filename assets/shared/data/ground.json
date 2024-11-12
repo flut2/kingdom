@@ -1,0 +1,243 @@
+[
+    {
+        "id": 65534,
+        "name": "Editor Grid",
+        "textures": [
+            {
+                "sheet": "ground",
+                "index": 0
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "Wood Light",
+        "textures": [
+            {
+                "sheet": "ground",
+                "index": 1
+            }
+        ],
+        "blend_prio": 3
+    },
+    {
+        "id": 2,
+        "name": "Wood",
+        "textures": [
+            {
+                "sheet": "ground",
+                "index": 2
+            }
+        ],
+        "blend_prio": 4
+    },
+    {
+        "id": 3,
+        "name": "Wood Dark",
+        "textures": [
+            {
+                "sheet": "ground",
+                "index": 3
+            }
+        ],
+        "blend_prio": 5
+    },
+    {
+        "id": 4,
+        "name": "Water",
+        "textures": [
+            {
+                "sheet": "ground",
+                "index": 4
+            }
+        ],
+        "blend_prio": 99,
+        "sink": true,
+        "speed_mult": 0.7
+    },
+    {
+        "id": 5,
+        "name": "Water Dark",
+        "textures": [
+            {
+                "sheet": "ground",
+                "index": 5
+            }
+        ],
+        "no_walk": true
+    },
+    {
+        "id": 6,
+        "name": "Grass",
+        "textures": [
+            {
+                "sheet": "ground",
+                "index": 6
+            },
+            {
+                "sheet": "ground",
+                "index": 7
+            },
+            {
+                "sheet": "ground",
+                "index": 8
+            }
+        ],
+        "blend_prio": 1
+    },
+    {
+        "id": 7,
+        "name": "Dirt",
+        "textures": [
+            {
+                "sheet": "ground",
+                "index": 9
+            },
+            {
+                "sheet": "ground",
+                "index": 10
+            },
+            {
+                "sheet": "ground",
+                "index": 11
+            }
+        ],
+        "blend_prio": 2
+    },
+    {
+        "id": 8,
+        "name": "Cobblestone",
+        "textures": [
+            {
+                "sheet": "ground",
+                "index": 12
+            },
+            {
+                "sheet": "ground",
+                "index": 13
+            },
+            {
+                "sheet": "ground",
+                "index": 14
+            },
+            {
+                "sheet": "ground",
+                "index": 15
+            }
+        ],
+        "blend_prio": 2
+    },
+    {
+        "id": 9,
+        "name": "Magma",
+        "textures": [
+            {
+                "sheet": "ground",
+                "index": 16
+            }
+        ],
+        "light": {
+            "color": "0xCC4539",
+            "intensity": 0.1
+        },
+        "animation": {
+            "type": "wave",
+            "delta_x": 0.13,
+            "delta_y": 0.13
+        },
+        "speed_mult": 0.58,
+        "damage": 30,
+        "sink": true,
+        "blend_prio": 99
+    },
+    {
+        "id": 10,
+        "name": "Chasm Ground",
+        "textures": [
+            {
+                "sheet": "ground",
+                "index": 17
+            },
+            {
+                "sheet": "ground",
+                "index": 18
+            },
+            {
+                "sheet": "ground",
+                "index": 19
+            },
+            {
+                "sheet": "ground",
+                "index": 20
+            },
+            {
+                "sheet": "ground",
+                "index": 21
+            },
+            {
+                "sheet": "ground",
+                "index": 22
+            }
+        ],
+        "blend_prio": -98
+    },
+    {
+        "id": 11,
+        "name": "Chasm Ground Dark",
+        "textures": [
+            {
+                "sheet": "ground",
+                "index": 23
+            },
+            {
+                "sheet": "ground",
+                "index": 24
+            },
+            {
+                "sheet": "ground",
+                "index": 25
+            },
+            {
+                "sheet": "ground",
+                "index": 26
+            },
+            {
+                "sheet": "ground",
+                "index": 27
+            }
+        ],
+        "blend_prio": -97
+    },
+    {
+        "id": 12,
+        "name": "Desert Sand",
+        "textures": [
+            {
+                "sheet": "ground",
+                "index": 28
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "name": "Desert Sand Dark",
+        "textures": [
+            {
+                "sheet": "ground",
+                "index": 29
+            }
+        ],
+        "blend_prio": 11
+    },
+    {
+        "id": 14,
+        "name": "Sandstone",
+        "textures": [
+            {
+                "sheet": "ground",
+                "index": 30
+            }
+        ],
+        "blend_prio": 1
+    }
+]

@@ -1,0 +1,280 @@
+[
+    {
+        "id": 0,
+        "name": "Starter Staff",
+        "description": "placeholder",
+        "item_type": "staff",
+        "texture": {
+            "sheet": "basic_items",
+            "index": 0
+        },
+        "arc_gap": 4.0,
+        "projectile_count": 3,
+        "projectile": {
+            "textures": [
+                {
+                    "sheet": "basic_projectiles",
+                    "index": 0
+                }
+            ],
+            "speed": 1.5,
+            "duration": 0.7,
+            "damage": 70,
+            "amplitude": 0.33,
+            "frequency": 4,
+            "accel": -0.9,
+            "accel_delay": 0.2,
+            "speed_clamp": 0.7
+        },
+        "sound": "items/swish_light.mp3"
+    },
+    {
+        "id": 1,
+        "name": "Starter Spell",
+        "description": "placeholder",
+        "item_type": "spell",
+        "texture": {
+            "sheet": "basic_items",
+            "index": 1
+        },
+        "activations": [
+            {
+                "spell": {
+                    "projectile_count": 20,
+                    "arc_gap": 4.0,
+                    "projectile": {
+                        "textures": [
+                            {
+                                "sheet": "basic_projectiles",
+                                "index": 0
+                            }
+                        ],
+                        "speed": 1.5,
+                        "duration": 0.7,
+                        "damage": 70,
+                        "amplitude": 0.33,
+                        "frequency": 4,
+                        "accel": -0.9,
+                        "accel_delay": 0.2,
+                        "speed_clamp": 0.7
+                    }
+                }
+            }
+        ],
+        "sound": "items/spell.mp3"
+    },
+    {
+        "id": 2,
+        "name": "Starter Robe",
+        "description": "placeholder",
+        "item_type": "robe",
+        "texture": {
+            "sheet": "basic_items",
+            "index": 2
+        },
+        "stat_increases": [
+            {
+                "defense": 10
+            },
+            {
+                "max_mp": 50
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Starter Ring",
+        "description": "placeholder",
+        "item_type": "accessory",
+        "texture": {
+            "sheet": "basic_items",
+            "index": 3
+        },
+        "stat_increases": [
+            {
+                "attack": 10
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Health Vial",
+        "description": "placeholder",
+        "item_type": "consumable",
+        "texture": {
+            "sheet": "misc",
+            "index": 0
+        },
+        "activations": [
+            {
+                "heal": 100
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Magic Vial",
+        "description": "placeholder",
+        "item_type": "consumable",
+        "texture": {
+            "sheet": "misc",
+            "index": 1
+        },
+        "activations": [
+            {
+                "magic": 100
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Life Fragment",
+        "description": "placeholder",
+        "item_type": "consumable",
+        "texture": {
+            "sheet": "misc",
+            "index": 8
+        },
+        "activations": [
+            {
+                "increment_stat": {
+                    "max_hp": 5
+                }
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "name": "Mana Fragment",
+        "description": "placeholder",
+        "item_type": "consumable",
+        "texture": {
+            "sheet": "misc",
+            "index": 9
+        },
+        "activations": [
+            {
+                "increment_stat": {
+                    "max_mp": 5
+                }
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "name": "Attack Fragment",
+        "description": "placeholder",
+        "item_type": "consumable",
+        "texture": {
+            "sheet": "misc",
+            "index": 10
+        },
+        "activations": [
+            {
+                "increment_stat": {
+                    "attack": 1
+                }
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "name": "Defense Fragment",
+        "description": "placeholder",
+        "item_type": "consumable",
+        "texture": {
+            "sheet": "misc",
+            "index": 11
+        },
+        "activations": [
+            {
+                "increment_stat": {
+                    "defense": 1
+                }
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "name": "Speed Fragment",
+        "description": "placeholder",
+        "item_type": "consumable",
+        "texture": {
+            "sheet": "misc",
+            "index": 12
+        },
+        "activations": [
+            {
+                "increment_stat": {
+                    "speed": 1
+                }
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "name": "Dexterity Fragment",
+        "description": "placeholder",
+        "item_type": "consumable",
+        "texture": {
+            "sheet": "misc",
+            "index": 13
+        },
+        "activations": [
+            {
+                "increment_stat": {
+                    "dexterity": 1
+                }
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "name": "Vitality Fragment",
+        "description": "placeholder",
+        "item_type": "consumable",
+        "texture": {
+            "sheet": "misc",
+            "index": 14
+        },
+        "activations": [
+            {
+                "increment_stat": {
+                    "vitality": 1
+                }
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "name": "Wisdom Fragment",
+        "description": "placeholder",
+        "item_type": "consumable",
+        "texture": {
+            "sheet": "misc",
+            "index": 15
+        },
+        "activations": [
+            {
+                "increment_stat": {
+                    "wisdom": 1
+                }
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "name": "Crimson Chasm Key",
+        "description": "placeholder",
+        "item_type": "consumable",
+        "texture": {
+            "sheet": "misc",
+            "index": 7
+        },
+        "activations": [
+            {
+                "create_portal": "Crimson Chasm"
+            }
+        ]
+    }
+]

@@ -1,0 +1,261 @@
+[
+    {
+        "id": 0,
+        "name": "Health Shrine",
+        "textures": [
+            {
+                "sheet": "props_big",
+                "index": 0
+            }
+        ],
+        "size_mult": 1.6,
+        "light": {
+            "color": "0xE54242",
+            "intensity": 0.25
+        },
+        "static": true,
+        "occupy_square": true
+    },
+    {
+        "id": 1,
+        "name": "Magic Shrine",
+        "textures": [
+            {
+                "sheet": "props_big",
+                "index": 1
+            }
+        ],
+        "size_mult": 1.6,
+        "light": {
+            "color": "0x4C8AED",
+            "intensity": 0.25
+        },
+        "static": true,
+        "occupy_square": true,
+        "animation": {
+            "period": 1.6,
+            "frames": [
+                {
+                    "time": 0.4,
+                    "texture": {
+                        "sheet": "props_big",
+                        "index": 1
+                    }
+                },
+                {
+                    "time": 0.4,
+                    "texture": {
+                        "sheet": "props_big",
+                        "index": 2
+                    }
+                },
+                {
+                    "time": 0.4,
+                    "texture": {
+                        "sheet": "props_big",
+                        "index": 3
+                    }
+                },
+                {
+                    "time": 0.4,
+                    "texture": {
+                        "sheet": "props_big",
+                        "index": 2
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "id": 2,
+        "name": "Closed Stash Chest",
+        "textures": [
+            {
+                "sheet": "misc_big",
+                "index": 0
+            }
+        ],
+        "size_mult": 0.6
+    },
+    {
+        "id": 3,
+        "name": "Gravestone 0",
+        "textures": [
+            {
+                "sheet": "misc",
+                "index": 16
+            }
+        ],
+        "show_name": true
+    },
+    {
+        "id": 4,
+        "name": "Gravestone 1",
+        "textures": [
+            {
+                "sheet": "misc",
+                "index": 17
+            }
+        ],
+        "show_name": true
+    },
+    {
+        "id": 5,
+        "name": "Gravestone 2",
+        "textures": [
+            {
+                "sheet": "misc",
+                "index": 18
+            }
+        ],
+        "show_name": true
+    },
+    {
+        "id": 6,
+        "name": "Gravestone 3",
+        "textures": [
+            {
+                "sheet": "misc",
+                "index": 19
+            }
+        ],
+        "show_name": true
+    },
+    {
+        "id": 7,
+        "name": "Gravestone 4",
+        "textures": [
+            {
+                "sheet": "misc",
+                "index": 20
+            }
+        ],
+        "show_name": true
+    },
+    {
+        "id": 8,
+        "name": "Gravestone 5",
+        "textures": [
+            {
+                "sheet": "misc_big",
+                "index": 26
+            }
+        ],
+        "show_name": true
+    },
+    {
+        "id": 9,
+        "name": "Gravestone 6",
+        "textures": [
+            {
+                "sheet": "misc_big",
+                "index": 27
+            }
+        ],
+        "show_name": true
+    },
+    {
+        "id": 10,
+        "name": "Gravestone 7",
+        "textures": [
+            {
+                "sheet": "misc_big",
+                "index": 28
+            }
+        ],
+        "show_name": true
+    },
+    {
+        "id": 11,
+        "name": "Gravestone 8",
+        "textures": [
+            {
+                "sheet": "misc_big",
+                "index": 29
+            }
+        ],
+        "show_name": true
+    },
+    {
+        "id": 12,
+        "name": "Gravestone 9",
+        "textures": [
+            {
+                "sheet": "misc_big",
+                "index": 30
+            }
+        ],
+        "show_name": true
+    },
+    {
+        "id": 13,
+        "name": "Grass",
+        "textures": [
+            {
+                "sheet": "props",
+                "index": 0
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "name": "Rock",
+        "textures": [
+            {
+                "sheet": "props",
+                "index": 1
+            },
+            {
+                "sheet": "props",
+                "index": 2
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "name": "Bush",
+        "textures": [
+            {
+                "sheet": "props",
+                "index": 3
+            }
+        ],
+        "occupy_square": true
+    },
+    {
+        "id": 16,
+        "name": "Flowers",
+        "textures": [
+            {
+                "sheet": "props",
+                "index": 4
+            },
+            {
+                "sheet": "props",
+                "index": 5
+            },
+            {
+                "sheet": "props",
+                "index": 6
+            }
+        ],
+        "draw_on_ground": true
+    },
+    {
+        "id": 17,
+        "name": "Wood Wall",
+        "textures": [
+            {
+                "sheet": "walls",
+                "index": 1
+            }
+        ],
+        "top_textures": [
+            {
+                "sheet": "walls",
+                "index": 0
+            }
+        ],
+        "is_wall": true
+    }
+]

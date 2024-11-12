@@ -1,0 +1,17 @@
+.{
+    .name = "Kingdom Server",
+    .version = "1.0.0",
+    .dependencies = .{
+        .shared = .{ .path = "../shared" },
+        .hiredis = .{ .path = "libs/hiredis" },
+        .httpz = .{
+            .url = "git+https://github.com/karlseguin/http.zig.git#074985fc31dc48dce7afc72e1b578db18569f832",
+            .hash = "1220205fd3902246e852ae75bf5ed0aa3007f29a1ddfab72f73cac25b142afd1730f",
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src/",
+    },
+}

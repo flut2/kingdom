@@ -1,0 +1,43 @@
+.{
+    .name = "Kingdom Client",
+    .version = "1.0.0",
+    .dependencies = .{
+        .shared = .{ .path = "../shared" },
+        .system_sdk = .{ .path = "../shared/libs/system-sdk" },
+        .native_file_dialog = .{ .path = "libs/native-file-dialog" },
+        .discord_rpc = .{ .path = "libs/discord-rpc" },
+        .zaudio = .{ .path = "libs/zaudio" },
+        .zstbi = .{ .path = "libs/zstbi" },
+        .zglfw = .{ .path = "libs/zglfw" },
+        .zgpu = .{ .path = "libs/zgpu" },
+        .dawn_x86_64_windows_gnu = .{
+            .url = "git+https://github.com/michal-z/webgpu_dawn-x86_64-windows-gnu.git#d3a68014e6b6b53fd330a0ccba99e4dcfffddae5",
+            .hash = "1220f9448cde02ef3cd51bde2e0850d4489daa0541571d748154e89c6eb46c76a267",
+        },
+        .dawn_x86_64_linux_gnu = .{
+            .url = "git+https://github.com/michal-z/webgpu_dawn-x86_64-linux-gnu.git#7d70db023bf254546024629cbec5ee6113e12a42",
+            .hash = "12204a3519efd49ea2d7cf63b544492a3a771d37eda320f86380813376801e4cfa73",
+        },
+        .dawn_aarch64_linux_gnu = .{
+            .url = "git+https://github.com/michal-z/webgpu_dawn-aarch64-linux-gnu.git#c1f55e740a62f6942ff046e709ecd509a005dbeb",
+            .hash = "12205cd13f6849f94ef7688ee88c6b74c7918a5dfb514f8a403fcc2929a0aa342627",
+        },
+        .dawn_aarch64_macos = .{
+            .url = "git+https://github.com/michal-z/webgpu_dawn-aarch64-macos.git#d2360cdfff0cf4a780cb77aa47c57aca03cc6dfe",
+            .hash = "12201fe677e9c7cfb8984a36446b329d5af23d03dc1e4f79a853399529e523a007fa",
+        },
+        .dawn_x86_64_macos = .{
+            .url = "git+https://github.com/michal-z/webgpu_dawn-x86_64-macos.git#901716b10b31ce3e0d3fe479326b41e91d59c661",
+            .hash = "1220b1f02f2f7edd98a078c64e3100907d90311d94880a3cc5927e1ac009d002667a",
+        },
+        .turbopack = .{
+            .url = "git+https://github.com/flut2/turbopack.git#afeb5e792e19043aea738ff0315e07047dc64dd6",
+            .hash = "1220436f7fbbe4886f98313128e2fc0291bba801229429e8ad0a3de47360851761fe",
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src/",
+    },
+}

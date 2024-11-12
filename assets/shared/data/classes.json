@@ -1,0 +1,73 @@
+[
+    {
+        "id": 0,
+        "name": "Wizard",
+        "description": "placeholder",
+        "texture": {
+            "sheet": "players",
+            "index": 0
+        },
+        "item_types": [
+            "staff",
+            "spell",
+            "robe",
+            "accessory"
+        ],
+        "default_items": [
+            "Starter Staff",
+            "Starter Spell",
+            "Starter Robe",
+            "Starter Ring"
+        ],
+        "stats": {
+            "health": {
+                "base": 800,
+                "max": 1000,
+                "level_increase_min": 10,
+                "level_increase_max": 20
+            },
+            "mana": {
+                "base": 800,
+                "max": 1000,
+                "level_increase_min": 10,
+                "level_increase_max": 20
+            },
+            "attack": {
+                "base": 50,
+                "max": 70,
+                "level_increase_min": 1,
+                "level_increase_max": 2
+            },
+            "defense": {
+                "base": 50,
+                "max": 70,
+                "level_increase_min": 1,
+                "level_increase_max": 2
+            },
+            "speed": {
+                "base": 50,
+                "max": 70,
+                "level_increase_min": 1,
+                "level_increase_max": 2
+            },
+            "dexterity": {
+                "base": 50,
+                "max": 70,
+                "level_increase_min": 1,
+                "level_increase_max": 2
+            },
+            "vitality": {
+                "base": 50,
+                "max": 70,
+                "level_increase_min": 1,
+                "level_increase_max": 2
+            },
+            "wisdom": {
+                "base": 50,
+                "max": 70,
+                "level_increase_min": 1,
+                "level_increase_max": 2
+            }
+        }
+    }
+]

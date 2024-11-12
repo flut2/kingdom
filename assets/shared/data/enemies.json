@@ -1,0 +1,358 @@
+[
+    {
+        "id": 0,
+        "name": "Spike Ball",
+        "texture": {
+            "sheet": "mobs",
+            "index": 0
+        },
+        "health": 3300,
+        "defense": 15,
+        "exp_reward": 100,
+        "projectiles": [
+            {
+                "textures": [
+                    {
+                        "sheet": "projectiles",
+                        "index": 0
+                    }
+                ],
+                "angle_correction": 1,
+                "damage": 70,
+                "speed": 1.5,
+                "size_mult": 1.3,
+                "duration": 0.4
+            }
+        ],
+        "size_mult": 1.2,
+        "hit_sound": "enemies/goblin_hit.mp3",
+        "death_sound": "enemies/goblin_death.mp3"
+    },
+    {
+        "id": 1,
+        "name": "Goblin Guard",
+        "texture": {
+            "sheet": "mobs",
+            "index": 1
+        },
+        "health": 7000,
+        "defense": 25,
+        "exp_reward": 100,
+        "projectiles": [
+            {
+                "textures": [
+                    {
+                        "sheet": "projectiles",
+                        "index": 1
+                    }
+                ],
+                "angle_correction": 1,
+                "damage": 55,
+                "speed": 0.75,
+                "size_mult": 1.5,
+                "duration": 0.8
+            }
+        ],
+        "size_mult": 1.3,
+        "hit_sound": "enemies/goblin_hit.mp3",
+        "death_sound": "enemies/goblin_death.mp3"
+    },
+    {
+        "id": 2,
+        "name": "Goblin Grunt",
+        "texture": {
+            "sheet": "mobs",
+            "index": 2
+        },
+        "health": 2000,
+        "defense": 10,
+        "exp_reward": 100,
+        "projectiles": [
+            {
+                "textures": [
+                    {
+                        "sheet": "projectiles",
+                        "index": 2
+                    }
+                ],
+                "angle_correction": 1,
+                "damage": 80,
+                "speed": 1.5,
+                "size_mult": 1.3,
+                "duration": 0.4
+            }
+        ],
+        "size_mult": 1.2,
+        "hit_sound": "enemies/goblin_hit.mp3",
+        "death_sound": "enemies/goblin_death.mp3"
+    },
+    {
+        "id": 3,
+        "name": "Crocodile",
+        "texture": {
+            "sheet": "mobs",
+            "index": 3
+        },
+        "health": 5000,
+        "defense": 20,
+        "exp_reward": 100,
+        "projectiles": [
+            {
+                "textures": [
+                    {
+                        "sheet": "projectiles",
+                        "index": 3
+                    }
+                ],
+                "angle_correction": 1,
+                "damage": 65,
+                "speed": 1.25,
+                "size_mult": 1.3,
+                "duration": 0.4
+            }
+        ],
+        "size_mult": 1.2,
+        "hit_sound": "enemies/goblin_hit.mp3",
+        "death_sound": "enemies/goblin_death.mp3"
+    },
+    {
+        "id": 4,
+        "name": "Imp",
+        "texture": {
+            "sheet": "mobs",
+            "index": 4
+        },
+        "health": 4000,
+        "defense": 35,
+        "exp_reward": 150,
+        "projectiles": [
+            {
+                "textures": [
+                    {
+                        "sheet": "projectiles",
+                        "index": 4
+                    }
+                ],
+                "angle_correction": 1,
+                "damage": 75,
+                "speed": 0.75,
+                "size_mult": 1.0,
+                "duration": 0.4,
+                "amplitude": 1.2
+            }
+        ],
+        "size_mult": 1.1,
+        "hit_sound": "enemies/demon_hit.mp3",
+        "death_sound": "enemies/demon_death.mp3"
+    },
+    {
+        "id": 5,
+        "name": "Living Flame",
+        "texture": {
+            "sheet": "mobs",
+            "index": 5
+        },
+        "health": 4000,
+        "defense": 45,
+        "exp_reward": 150,
+        "projectiles": [
+            {
+                "textures": [
+                    {
+                        "sheet": "projectiles",
+                        "index": 5
+                    }
+                ],
+                "angle_correction": 1,
+                "damage": 120,
+                "speed": 0.75,
+                "size_mult": 1.1,
+                "duration": 0.6,
+                "amplitude": 0.69
+            }
+        ],
+        "size_mult": 1.1,
+        "hit_sound": "enemies/demon_hit.mp3",
+        "death_sound": "enemies/demon_death.mp3"
+    },
+    {
+        "id": 6,
+        "name": "Demon Mage",
+        "texture": {
+            "sheet": "mobs",
+            "index": 6
+        },
+        "health": 6000,
+        "defense": 50,
+        "exp_reward": 150,
+        "projectiles": [
+            {
+                "textures": [
+                    {
+                        "sheet": "projectiles",
+                        "index": 6
+                    }
+                ],
+                "angle_correction": 1,
+                "damage": 90,
+                "speed": 0.75,
+                "size_mult": 1.3,
+                "duration": 1.6,
+                "boomerang": true,
+                "amplitude": 0.22
+            }
+        ],
+        "size_mult": 1.3,
+        "hit_sound": "enemies/demon_hit.mp3",
+        "death_sound": "enemies/demon_death.mp3"
+    },
+    {
+        "id": 7,
+        "name": "Demon Archer",
+        "texture": {
+            "sheet": "mobs",
+            "index": 7
+        },
+        "health": 5000,
+        "defense": 35,
+        "exp_reward": 150,
+        "projectiles": [
+            {
+                "textures": [
+                    {
+                        "sheet": "projectiles",
+                        "index": 7
+                    }
+                ],
+                "angle_correction": 1,
+                "damage": 125,
+                "speed": 0.75,
+                "size_mult": 1.3,
+                "duration": 0.9,
+                "piercing": true,
+                "amplitude": 0.22
+            }
+        ],
+        "size_mult": 1.2,
+        "hit_sound": "enemies/demon_hit.mp3",
+        "death_sound": "enemies/demon_death.mp3"
+    },
+    {
+        "id": 8,
+        "name": "Jackal Warrior",
+        "texture": {
+            "sheet": "mobs",
+            "index": 8
+        },
+        "health": 9000,
+        "defense": 45,
+        "exp_reward": 200,
+        "projectiles": [
+            {
+                "textures": [
+                    {
+                        "sheet": "projectiles",
+                        "index": 8
+                    }
+                ],
+                "angle_correction": 1,
+                "damage": 75,
+                "speed": 0.95,
+                "size_mult": 1.3,
+                "duration": 0.5,
+                "piercing": true
+            }
+        ],
+        "size_mult": 1.4,
+        "hit_sound": "enemies/jackal_hit.mp3",
+        "death_sound": "enemies/jackal_death.mp3"
+    },
+    {
+        "id": 9,
+        "name": "Jackal Priest",
+        "texture": {
+            "sheet": "mobs",
+            "index": 9
+        },
+        "health": 7000,
+        "defense": 25,
+        "exp_reward": 200,
+        "projectiles": [
+            {
+                "textures": [
+                    {
+                        "sheet": "projectiles",
+                        "index": 8
+                    }
+                ],
+                "angle_correction": 1,
+                "damage": 75,
+                "speed": 0.55,
+                "size_mult": 1.3,
+                "duration": 0.7,
+                "piercing": true
+            }
+        ],
+        "size_mult": 1.2,
+        "hit_sound": "enemies/jackal_hit.mp3",
+        "death_sound": "enemies/jackal_death.mp3"
+    },
+    {
+        "id": 10,
+        "name": "Jackal Archer",
+        "texture": {
+            "sheet": "mobs",
+            "index": 10
+        },
+        "health": 8000,
+        "defense": 35,
+        "exp_reward": 200,
+        "projectiles": [
+            {
+                "textures": [
+                    {
+                        "sheet": "projectiles",
+                        "index": 9
+                    }
+                ],
+                "angle_correction": 1,
+                "damage": 95,
+                "speed": 0.75,
+                "size_mult": 1.3,
+                "duration": 1.5,
+                "piercing": true,
+                "amplitude": 0.7
+            }
+        ],
+        "size_mult": 1.3,
+        "hit_sound": "enemies/jackal_hit.mp3",
+        "death_sound": "enemies/jackal_death.mp3"
+    },
+    {
+        "id": 11,
+        "name": "Regal Mummy",
+        "texture": {
+            "sheet": "mobs",
+            "index": 11
+        },
+        "health": 7000,
+        "defense": 35,
+        "size_mult": 1.3,
+        "exp_reward": 200,
+        "hit_sound": "enemies/jackal_hit.mp3",
+        "death_sound": "enemies/jackal_death.mp3"
+    },
+    {
+        "id": 12,
+        "name": "Forest Firefly",
+        "texture": {
+            "sheet": "mobs",
+            "index": 12
+        },
+        "size_mult": 0.8,
+        "light": {
+            "color": "0xE0CB99",
+            "intensity": 0.15
+        }
+    }
+]
