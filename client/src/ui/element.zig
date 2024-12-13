@@ -153,7 +153,6 @@ pub const TextData = struct {
     outline_width: f32 = 1.0, // 0.5 for off
     password: bool = false,
     handle_special_chars: bool = true,
-    disable_subpixel: bool = false,
     scissor: ScissorRect = .{},
     // alignments other than default need max width/height defined respectively
     hori_align: AlignHori = .left,

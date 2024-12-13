@@ -22,8 +22,6 @@ const minimap_render_type = 4.0;
 const menu_bg_render_type = 5.0;
 const text_normal_render_type = 6.0;
 const text_drop_shadow_render_type = 7.0;
-const text_normal_no_subpixel_render_type = 8.0;
-const text_drop_shadow_no_subpixel_render_type = 9.0;
 
 struct VertexInput {
     @location(0) pos_uv: vec4<f32>,
@@ -298,43 +296,6 @@ fn fs_main(in: VertexOutput) -> @location(0) vec4<f32> {
     }
     
     if in.render_type == text_normal_render_type {
-        const subpixel = 1.0 / 3.0;
-        let subpixel_width = (abs(dx.x) + abs(dy.x)) * subpixel; // this is just fwidth(in.uv).x * subpixel
-
-        var red_tex = vec4(0.0, 0.0, 0.0, 0.0);
-        var green_tex = vec4(0.0, 0.0, 0.0, 0.0);
-        var blue_tex = vec4(0.0, 0.0, 0.0, 0.0);
-        var tex_offset = vec4(0.0, 0.0, 0.0, 0.0);
-        if in.texel_and_text_data.w == medium_text_type {
-            red_tex = textureSampleGrad(medium_tex, linear_sampler, vec2(in.pos_uv.z - subpixel_width, in.pos_uv.w), dx, dy);
-            green_tex = textureSampleGrad(medium_tex, linear_sampler, in.pos_uv.zw, dx, dy);
-            blue_tex = textureSampleGrad(medium_tex, linear_sampler, vec2(in.pos_uv.z + subpixel_width, in.pos_uv.w), dx, dy);
-        } else if in.texel_and_text_data.w == medium_italic_text_type {
-            red_tex = textureSampleGrad(medium_italic_tex, linear_sampler, vec2(in.pos_uv.z - subpixel_width, in.pos_uv.w), dx, dy);
-            green_tex = textureSampleGrad(medium_italic_tex, linear_sampler, in.pos_uv.zw, dx, dy);
-            blue_tex = textureSampleGrad(medium_italic_tex, linear_sampler, vec2(in.pos_uv.z + subpixel_width, in.pos_uv.w), dx, dy);
-        } else if in.texel_and_text_data.w == bold_text_type {
-            red_tex = textureSampleGrad(bold_tex, linear_sampler, vec2(in.pos_uv.z - subpixel_width, in.pos_uv.w), dx, dy);
-            green_tex = textureSampleGrad(bold_tex, linear_sampler, in.pos_uv.zw, dx, dy);
-            blue_tex = textureSampleGrad(bold_tex, linear_sampler, vec2(in.pos_uv.z + subpixel_width, in.pos_uv.w), dx, dy);
-        } else if in.texel_and_text_data.w == bold_italic_text_type {
-            red_tex = textureSampleGrad(bold_italic_tex, linear_sampler, vec2(in.pos_uv.z - subpixel_width, in.pos_uv.w), dx, dy);
-            green_tex = textureSampleGrad(bold_italic_tex, linear_sampler, in.pos_uv.zw, dx, dy);
-            blue_tex = textureSampleGrad(bold_italic_tex, linear_sampler, vec2(in.pos_uv.z + subpixel_width, in.pos_uv.w), dx, dy);
-        }
-
-        let red = sample_msdf(red_tex, in.texel_and_text_data.z, in.alpha_and_shadow_color.x, 0.5);
-        let green = sample_msdf(green_tex, in.texel_and_text_data.z, in.alpha_and_shadow_color.x, 0.5);
-        let blue = sample_msdf(blue_tex, in.texel_and_text_data.z, in.alpha_and_shadow_color.x, 0.5);
-
-        let alpha = clamp((red + green + blue) / 3.0, 0.0, 1.0);
-        let base_pixel = vec4(red * in.base_color_and_intensity.r, green * in.base_color_and_intensity.g, blue * in.base_color_and_intensity.b, alpha);
-
-        let outline_alpha = sample_msdf(green_tex, in.texel_and_text_data.z, in.alpha_and_shadow_color.x, in.outline_color_and_w.w);
-        return mix(vec4(in.outline_color_and_w.rgb, outline_alpha), base_pixel, alpha);
-    }
-    
-    if in.render_type == text_normal_no_subpixel_render_type {
         var tex = vec4(0.0, 0.0, 0.0, 0.0);
         if in.texel_and_text_data.w == medium_text_type {
             tex = textureSampleGrad(medium_tex, linear_sampler, in.pos_uv.zw, dx, dy);
@@ -354,53 +315,6 @@ fn fs_main(in: VertexOutput) -> @location(0) vec4<f32> {
     }
     
     if in.render_type == text_drop_shadow_render_type {
-        const subpixel = 1.0 / 3.0;
-        let subpixel_width = (abs(dx.x) + abs(dy.x)) * subpixel; // this is just fwidth(in.uv).x * subpixel
-
-        var red_tex = vec4(0.0, 0.0, 0.0, 0.0);
-        var green_tex = vec4(0.0, 0.0, 0.0, 0.0);
-        var blue_tex = vec4(0.0, 0.0, 0.0, 0.0);
-        var tex_offset = vec4(0.0, 0.0, 0.0, 0.0);
-        if in.texel_and_text_data.w == medium_text_type {
-            red_tex = textureSampleGrad(medium_tex, linear_sampler, vec2(in.pos_uv.z - subpixel_width, in.pos_uv.w), dx, dy);
-            green_tex = textureSampleGrad(medium_tex, linear_sampler, in.pos_uv.zw, dx, dy);
-            blue_tex = textureSampleGrad(medium_tex, linear_sampler, vec2(in.pos_uv.z + subpixel_width, in.pos_uv.w), dx, dy);
-            tex_offset = textureSampleGrad(medium_tex, linear_sampler, in.pos_uv.zw - in.texel_and_text_data.xy, dx, dy);
-        } else if in.texel_and_text_data.w == medium_italic_text_type {
-            red_tex = textureSampleGrad(medium_italic_tex, linear_sampler, vec2(in.pos_uv.z - subpixel_width, in.pos_uv.w), dx, dy);
-            green_tex = textureSampleGrad(medium_italic_tex, linear_sampler, in.pos_uv.zw, dx, dy);
-            blue_tex = textureSampleGrad(medium_italic_tex, linear_sampler, vec2(in.pos_uv.z + subpixel_width, in.pos_uv.w), dx, dy);
-            tex_offset = textureSampleGrad(medium_italic_tex, linear_sampler, in.pos_uv.zw - in.texel_and_text_data.xy, dx, dy);
-        } else if in.texel_and_text_data.w == bold_text_type {
-            red_tex = textureSampleGrad(bold_tex, linear_sampler, vec2(in.pos_uv.z - subpixel_width, in.pos_uv.w), dx, dy);
-            green_tex = textureSampleGrad(bold_tex, linear_sampler, in.pos_uv.zw, dx, dy);
-            blue_tex = textureSampleGrad(bold_tex, linear_sampler, vec2(in.pos_uv.z + subpixel_width, in.pos_uv.w), dx, dy);
-            tex_offset = textureSampleGrad(bold_tex, linear_sampler, in.pos_uv.zw - in.texel_and_text_data.xy, dx, dy);
-        } else if in.texel_and_text_data.w == bold_italic_text_type {
-            red_tex = textureSampleGrad(bold_italic_tex, linear_sampler, vec2(in.pos_uv.z - subpixel_width, in.pos_uv.w), dx, dy);
-            green_tex = textureSampleGrad(bold_italic_tex, linear_sampler, in.pos_uv.zw, dx, dy);
-            blue_tex = textureSampleGrad(bold_italic_tex, linear_sampler, vec2(in.pos_uv.z + subpixel_width, in.pos_uv.w), dx, dy);
-            tex_offset = textureSampleGrad(bold_italic_tex, linear_sampler, in.pos_uv.zw - in.texel_and_text_data.xy, dx, dy);
-        }
-
-        let red = sample_msdf(red_tex, in.texel_and_text_data.z, in.alpha_and_shadow_color.x, 0.5);
-        let green = sample_msdf(green_tex, in.texel_and_text_data.z, in.alpha_and_shadow_color.x, 0.5);
-        let blue = sample_msdf(blue_tex, in.texel_and_text_data.z, in.alpha_and_shadow_color.x, 0.5);
-
-        let alpha = clamp((red + green + blue) / 3.0, 0.0, 1.0);
-        let base_pixel = vec4(red * in.base_color_and_intensity.r, green * in.base_color_and_intensity.g, blue * in.base_color_and_intensity.b, alpha);
-
-        let outline_alpha = sample_msdf(green_tex, in.texel_and_text_data.z, in.alpha_and_shadow_color.x, in.outline_color_and_w.w);
-        let outlined_pixel = mix(vec4(in.outline_color_and_w.rgb, outline_alpha), base_pixel, alpha);
-
-        // don't subpixel aa the offset, it's supposed to be a shadow
-        let offset_opacity = sample_msdf(tex_offset, in.texel_and_text_data.z, in.alpha_and_shadow_color.x, in.outline_color_and_w.w);
-        let offset_pixel = vec4(in.alpha_and_shadow_color.yzw, offset_opacity);
-
-        return mix(offset_pixel, base_pixel, outline_alpha);
-    }
-    
-    if in.render_type == text_drop_shadow_no_subpixel_render_type {
         var tex = vec4(0.0, 0.0, 0.0, 0.0);
         var tex_offset = vec4(0.0, 0.0, 0.0, 0.0);
         if in.texel_and_text_data.w == medium_text_type {

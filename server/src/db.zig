@@ -1,9 +1,11 @@
 const std = @import("std");
-const settings = @import("settings.zig");
 const builtin = @import("builtin");
+
 const network_data = @import("shared").network_data;
-const main = @import("main.zig");
 const use_dragonfly = @import("options").use_dragonfly;
+
+const main = @import("main.zig");
+const settings = @import("settings.zig");
 
 pub const c = @cImport({
     @cDefine("REDIS_OPT_NONBLOCK", {});
@@ -414,6 +416,8 @@ pub fn init(ally: std.mem.Allocator) !void {
         std.log.err("Redis connection error: {s}", .{context.errstr});
         return error.ConnectionError;
     }
+
+    if (redisCommand(context, "SELECT %d", .{settings.redis_database_idx})) |reply| c.freeReplyObject(reply);
 }
 
 pub fn deinit() void {

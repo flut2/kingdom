@@ -1,15 +1,16 @@
 const std = @import("std");
-const map = @import("../game/map.zig");
-const assets = @import("../assets.zig");
-const camera = @import("../camera.zig");
+
+const glfw = @import("zglfw");
 const gpu = @import("zgpu");
 const utils = @import("shared").utils;
 const zstbi = @import("zstbi");
-const element = @import("../ui/element.zig");
-const main = @import("../main.zig");
-const systems = @import("../ui/systems.zig");
-const glfw = @import("zglfw");
 
+const assets = @import("../assets.zig");
+const camera = @import("../camera.zig");
+const map = @import("../game/map.zig");
+const main = @import("../main.zig");
+const element = @import("../ui/element.zig");
+const systems = @import("../ui/systems.zig");
 const game_render = @import("game.zig");
 const ground_render = @import("ground.zig");
 const ui_render = @import("ui.zig");
@@ -142,8 +143,6 @@ pub const minimap_render_type = 4.0;
 pub const menu_bg_render_type = 5.0;
 pub const text_normal_render_type = 6.0;
 pub const text_drop_shadow_render_type = 7.0;
-pub const text_normal_no_subpixel_render_type = 8.0;
-pub const text_drop_shadow_no_subpixel_render_type = 9.0;
 
 pub const base_batch_vert_size = 10000 * 4;
 pub const ground_batch_vert_size = 10000 * 4;
@@ -1037,12 +1036,10 @@ pub fn drawText(
     const max_width_off = text_data.max_width == std.math.floatMax(f32);
     const max_height_off = text_data.max_height == std.math.floatMax(f32);
 
-    var render_type: f32 = text_normal_render_type;
-    if (text_data.shadow_texel_offset_mult != 0) {
-        render_type = if (text_data.disable_subpixel) text_drop_shadow_no_subpixel_render_type else text_drop_shadow_render_type;
-    } else {
-        render_type = if (text_data.disable_subpixel) text_normal_no_subpixel_render_type else text_normal_render_type;
-    }
+    const render_type: f32 = if (text_data.shadow_texel_offset_mult != 0)
+        text_drop_shadow_render_type
+    else
+        text_normal_render_type;
 
     const start_x = @round(x - cam_data.screen_width / 2.0) - (assets.CharacterData.padding * (text_data.size / assets.CharacterData.size));
     const start_y = @round(y - cam_data.screen_height / 2.0 + line_height); // line_height already accounts for pad
