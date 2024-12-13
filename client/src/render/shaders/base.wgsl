@@ -59,8 +59,8 @@ fn median(r: f32, g: f32, b: f32) -> f32 {
     return max(min(r, g), min(max(r, g), b));
 }
 
-fn sample_msdf(tex: vec4<f32>, dist_factor: f32, alpha_mult: f32, width: f32) -> f32 {
-    return clamp((median(tex.r, tex.g, tex.b) - 0.5) * dist_factor + width, 0.0, 1.0) * alpha_mult;
+fn sampleMsdf(tex: vec4<f32>, dist_factor: f32, alpha_mult: f32, width: f32) -> f32 {
+    return clamp((median(tex.r, tex.g, tex.b) - 0.5) * dist_factor + 0.5 + width, 0.0, 1.0) * alpha_mult;
 }
 
 @fragment
@@ -307,10 +307,10 @@ fn fs_main(in: VertexOutput) -> @location(0) vec4<f32> {
             tex = textureSampleGrad(bold_italic_tex, linear_sampler, in.pos_uv.zw, dx, dy);
         }
 
-        let alpha = sample_msdf(tex, in.texel_and_text_data.z, in.alpha_and_shadow_color.x, 0.5);
+        let alpha = sampleMsdf(tex, in.texel_and_text_data.z, in.alpha_and_shadow_color.x, 0.0);
         let base_pixel = vec4(in.base_color_and_intensity.rgb, alpha);
 
-        let outline_alpha = sample_msdf(tex, in.texel_and_text_data.z, in.alpha_and_shadow_color.x, in.outline_color_and_w.w);
+        let outline_alpha = sampleMsdf(tex, in.texel_and_text_data.z, in.alpha_and_shadow_color.x, in.outline_color_and_w.w);
         return mix(vec4(in.outline_color_and_w.rgb, outline_alpha), base_pixel, alpha);
     }
     
@@ -331,13 +331,13 @@ fn fs_main(in: VertexOutput) -> @location(0) vec4<f32> {
             tex_offset = textureSampleGrad(bold_italic_tex, linear_sampler, in.pos_uv.zw - in.texel_and_text_data.xy, dx, dy);
         }
 
-        let alpha = sample_msdf(tex, in.texel_and_text_data.z, in.alpha_and_shadow_color.x, 0.5);
+        let alpha = sampleMsdf(tex, in.texel_and_text_data.z, in.alpha_and_shadow_color.x, 0.0);
         let base_pixel = vec4(in.base_color_and_intensity.rgb, alpha);
 
-        let outline_alpha = sample_msdf(tex, in.texel_and_text_data.z, in.alpha_and_shadow_color.x, in.outline_color_and_w.w);
+        let outline_alpha = sampleMsdf(tex, in.texel_and_text_data.z, in.alpha_and_shadow_color.x, in.outline_color_and_w.w);
         let outlined_pixel = mix(vec4(in.outline_color_and_w.rgb, outline_alpha), base_pixel, alpha);
 
-        let offset_opacity = sample_msdf(tex_offset, in.texel_and_text_data.z, in.alpha_and_shadow_color.x, in.outline_color_and_w.w);
+        let offset_opacity = sampleMsdf(tex_offset, in.texel_and_text_data.z, in.alpha_and_shadow_color.x, in.outline_color_and_w.w);
         let offset_pixel = vec4(in.alpha_and_shadow_color.yzw, offset_opacity);
 
         return mix(offset_pixel, base_pixel, outline_alpha);
