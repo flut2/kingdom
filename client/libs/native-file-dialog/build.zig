@@ -44,7 +44,7 @@ pub fn build(b: *std.Build) void {
     }
 
     if (target.result.os.tag == .macos) {
-        lib.defineCMacro("__kernel_ptr_semantics", "");
+        lib.root_module.addCMacro("__kernel_ptr_semantics", "");
     }
 
     b.installArtifact(lib);

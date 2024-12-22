@@ -14,7 +14,10 @@ pub const c = @cImport({
 });
 
 // TODO: important, change this seed when hosting a server to the public to prevent login tokens from being predicted
-pub var csprng = std.Random.DefaultCsprng.init([_]u8{0} ** std.Random.DefaultCsprng.secret_seed_length);
+pub var csprng: std.Random.DefaultCsprng = blk: {
+    @setEvalBranchQuota(10000);
+    break :blk .init(@splat(0));
+};
 
 inline fn anyToBytes(val: anytype) []const u8 {
     const T = @TypeOf(val);

@@ -53,7 +53,7 @@ pub fn build(b: *std.Build) void {
         },
     });
 
-    if (options.on_demand) tracy.defineCMacro("TRACY_ON_DEMAND", null);
+    if (options.on_demand) tracy.root_module.addCMacro("TRACY_ON_DEMAND", "");
 
     tracy.linkLibC();
     if (target.result.abi != .msvc)

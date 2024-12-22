@@ -40,7 +40,7 @@ pub fn build(b: *std.Build) !void {
             .enable_tracy = enable_tracy,
         });
         exe.root_module.linkLibrary(shared_dep.artifact("libuv"));
-        
+
         exe.root_module.addImport("shared", shared_dep.module("shared"));
         exe.root_module.addImport("rpmalloc", shared_dep.module("rpmalloc"));
         if (enable_tracy) exe.root_module.addImport("tracy", shared_dep.module("tracy"));
@@ -58,9 +58,9 @@ pub fn build(b: *std.Build) !void {
         if (target.result.os.tag == .windows) {
             exe.linkSystemLibrary("ws2_32");
             exe.linkSystemLibrary("crypt32");
-            exe.defineCMacro("WIN32_LEAN_AND_MEAN", null);
-            exe.defineCMacro("_CRT_SECURE_NO_WARNINGS", null);
-            exe.defineCMacro("_WIN32", null);
+            exe.root_module.addCMacro("WIN32_LEAN_AND_MEAN", "");
+            exe.root_module.addCMacro("_CRT_SECURE_NO_WARNINGS", "");
+            exe.root_module.addCMacro("_WIN32", "");
         }
         exe.addCSourceFiles(.{
             .root = hiredis_path,

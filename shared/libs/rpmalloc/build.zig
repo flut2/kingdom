@@ -28,7 +28,7 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
-    setOptions(&unit_tests_leo.root_module, options);
+    setOptions(unit_tests_leo.root_module, options);
     if (link_libc) unit_tests_leo.linkLibC();
 
     const unit_tests_tls = b.step("unit-tests", "Run the unit tests");
@@ -41,7 +41,7 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
-    setOptions(&bench_exe_leo.root_module, options);
+    setOptions(bench_exe_leo.root_module, options);
     bench_exe_leo.root_module.addImport("rpmalloc", rpmalloc_mod);
     if (link_libc) bench_exe_leo.linkLibC();
     b.installArtifact(bench_exe_leo);
