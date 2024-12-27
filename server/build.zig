@@ -6,7 +6,7 @@ pub fn build(b: *std.Build) !void {
     const use_dragonfly = b.option(bool, "use_dragonfly",
         \\Whether to use Dragonfly for the database.
         \\Redis is assumed otherwise, and TTL banning/muting will be permanent across HWIDs, but not accounts.
-    ) orelse true;
+    ) orelse false;
 
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
