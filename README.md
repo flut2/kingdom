@@ -8,5 +8,3 @@
 
 Should work on localhost without any changes, just compile and run the server and the client. First user to register is automatically ranked Admin.
 To expose the server to other people, head into ``server/src/settings.zig`` and ``client/build.zig`` and change the relevant IPs (``public_ip``, ``login_server_uri``), with the latter being optional (can also specify it as a build option).
-
-Join https://discord.gg/FZAneXy5KP for support/questions.
