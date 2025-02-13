@@ -173,11 +173,6 @@ pub fn build(b: *std.Build) !void {
     });
     b.installArtifact(libuv);
 
-    b.modules.put(b.dupe("rpmalloc"), b.dependency("rpmalloc", .{
-        .target = target,
-        .optimize = optimize,
-    }).module("rpmalloc")) catch @panic("OOM");
-
     const enable_tracy = b.option(bool, "enable_tracy", "Enable Tracy") orelse false;
     if (enable_tracy) {
         const tracy_dep = b.dependency("ztracy", .{

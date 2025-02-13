@@ -3,7 +3,7 @@ const build_options = @import("options");
 const settings = @import("settings.zig");
 const db = @import("db.zig");
 const httpz = @import("httpz");
-const rpmalloc = @import("rpmalloc").RPMalloc(.{});
+const rpmalloc = @import("rpmalloc");
 const shared = @import("shared");
 const builtin = @import("builtin");
 const main = @import("main.zig");
@@ -30,7 +30,7 @@ var server: httpz.Server(Handlers) = undefined;
 pub fn init(allocator: std.mem.Allocator) !void {
     server = try httpz.Server(Handlers).init(allocator, .{ .port = settings.login_port }, handlers);
 
-    var router = server.router();
+    var router = server.router(.{});
     router.post("/account/verify", handleAccountVerify, .{});
     router.post("/account/register", handleAccountRegister, .{});
     router.post("/char/list", handleCharList, .{});
@@ -43,21 +43,19 @@ pub fn deinit() void {
 pub fn tick() !void {
     if (build_options.enable_tracy) tracy.SetThreadName("Login");
 
-    rpmalloc.initThread() catch |e| {
-        std.log.err("Login thread initialization failed: {}", .{e});
-        return;
-    };
-    defer rpmalloc.deinitThread(true);
+    if (builtin.mode != .Debug) {
+        rpmalloc.initThread();
+        defer rpmalloc.deinitThread();
+    }
 
     try server.listen();
 }
 
 fn handleAccountRegister(_: Handlers, req: *httpz.Request, res: *httpz.Response) !void {
-    rpmalloc.initThread() catch {
-        res.body = "Thread initialization failed";
-        return;
-    };
-    defer rpmalloc.deinitThread(true);
+    if (builtin.mode != .Debug) {
+        rpmalloc.initThread();
+        defer rpmalloc.deinitThread();
+    }
 
     const query = try req.query();
     const name = query.get("name") orelse {
@@ -165,11 +163,10 @@ fn handleAccountRegister(_: Handlers, req: *httpz.Request, res: *httpz.Response)
 }
 
 fn handleAccountVerify(_: Handlers, req: *httpz.Request, res: *httpz.Response) !void {
-    rpmalloc.initThread() catch {
-        res.body = "Thread initialization failed";
-        return;
-    };
-    defer rpmalloc.deinitThread(true);
+    if (builtin.mode != .Debug) {
+        rpmalloc.initThread();
+        defer rpmalloc.deinitThread();
+    }
 
     const query = try req.query();
     const email = query.get("email") orelse {
@@ -253,11 +250,10 @@ fn handleAccountVerify(_: Handlers, req: *httpz.Request, res: *httpz.Response) !
 }
 
 fn handleCharList(_: Handlers, req: *httpz.Request, res: *httpz.Response) !void {
-    rpmalloc.initThread() catch {
-        res.body = "Thread initialization failed";
-        return;
-    };
-    defer rpmalloc.deinitThread(true);
+    if (builtin.mode != .Debug) {
+        rpmalloc.initThread();
+        defer rpmalloc.deinitThread();
+    }
 
     const query = try req.query();
     const email = query.get("email") orelse {

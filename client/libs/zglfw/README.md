@@ -1,25 +1,20 @@
-# zglfw v0.9.0 - Zig build package and bindings for [GLFW 3.4](https://github.com/glfw/glfw/releases/tag/3.4)
+# [zglfw](https://github.com/zig-gamedev/zglfw)
+
+Zig build package and bindings for [GLFW 3.4](https://github.com/glfw/glfw/releases/tag/3.4)
 
 ## Getting started
 
-Copy `zglfw` and `system-sdk` to a subdirectory of your project and add the following to your `build.zig.zon` .dependencies:
-```zig
-    .zglfw = .{ .path = "libs/zglfw" },
-    
-    // Required for building glfw
-    .system_sdk = .{ .path = "libs/system-sdk" },
-```
-
-Then in your `build.zig` add:
+Example `build.zig`:
 ```zig
 pub fn build(b: *std.Build) void {
     const exe = b.addExecutable(.{ ... });
 
     const zglfw = b.dependency("zglfw", .{});
     exe.root_module.addImport("zglfw", zglfw.module("root"));
-    exe.linkLibrary(zglfw.artifact("glfw"));
 
-    @import("system_sdk").addLibraryPathsTo(exe);
+    if (target.result.os.tag != .emscripten) {
+        exe.linkLibrary(zglfw.artifact("glfw"));
+    }
 }
 ```
 
@@ -31,6 +26,10 @@ pub fn main() !void {
     try glfw.init();
     defer glfw.terminate();
 
+    const window = try glfw.createWindow(600, 600, "zig-gamedev: minimal_glfw_gl", null);
+    defer glfw.destroyWindow(window);
+
+    // or, using the equivilent, encapsulated, "objecty" API:
     const window = try glfw.Window.create(600, 600, "zig-gamedev: minimal_glfw_gl", null);
     defer window.destroy();
 

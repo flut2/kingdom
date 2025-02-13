@@ -3,10 +3,17 @@
     .version = "1.0.0",
     .dependencies = .{
         .shared = .{ .path = "../shared" },
-        .hiredis = .{ .path = "libs/hiredis" },
+        .hiredis = .{
+            .url = "git+https://github.com/redis/hiredis.git#77bcc73ebbc562d8e8173832b710bfbfa4327b13",
+            .hash = "1220bb7f7de97ee93c3a5183e2aa862363b019e3fef4a6a6c8171bd5a464a4f0301b",
+        },
         .httpz = .{
-            .url = "git+https://github.com/karlseguin/http.zig.git#074985fc31dc48dce7afc72e1b578db18569f832",
-            .hash = "1220205fd3902246e852ae75bf5ed0aa3007f29a1ddfab72f73cac25b142afd1730f",
+            .url = "git+https://github.com/karlseguin/http.zig.git#f16b296a2772be97e48a57259c004aa6584a02c6",
+            .hash = "1220e524a72c18aa2585f326902066fda544c5df0cf6618eea885b04041204dc5d7f",
+        },
+        .rpmalloc = .{
+            .url = "git+https://github.com/flut2/rpmalloc-zig.git#f440339324dac35ea262abdce8a47b36c3a7a612",
+            .hash = "12203f2b4ced453e6117490ba108a0b7cac6d5b3ec972a26093e4725f1b395bff3b2",
         },
     },
     .paths = .{

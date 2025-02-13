@@ -1,21 +1,22 @@
 const std = @import("std");
-const build_options = @import("options");
-const db = @import("db.zig");
-const login = @import("login.zig");
-const settings = @import("settings.zig");
 const builtin = @import("builtin");
-const tracy = if (build_options.enable_tracy) @import("tracy") else {};
-const rpmalloc = @import("rpmalloc").RPMalloc(.{});
+
+const build_options = @import("options");
+const rpmalloc = @import("rpmalloc");
 const shared = @import("shared");
 const game_data = shared.game_data;
 const utils = shared.utils;
 const uv = shared.uv;
-const maps = @import("map/maps.zig");
-const behavior = @import("logic/behavior.zig");
-const behavior_logic = @import("logic/logic.zig");
 
 const Client = @import("client.zig").Client;
+const db = @import("db.zig");
+const behavior = @import("logic/behavior.zig");
+const behavior_logic = @import("logic/logic.zig");
+const login = @import("login.zig");
+const maps = @import("map/maps.zig");
+const settings = @import("settings.zig");
 
+const tracy = if (build_options.enable_tracy) @import("tracy") else {};
 pub const c = @cImport({
     @cDefine("REDIS_OPT_NONBLOCK", {});
     @cDefine("REDIS_OPT_REUSEADDR", {});
@@ -48,11 +49,10 @@ export fn timerCallback(_: [*c]uv.uv_timer_t) void {
 pub fn gameTick() !void {
     if (build_options.enable_tracy) tracy.SetThreadName("Game");
 
-    rpmalloc.initThread() catch |e| {
-        std.log.err("Game thread initialization failed: {}", .{e});
-        return;
-    };
-    defer rpmalloc.deinitThread(true);
+    if (builtin.mode != .Debug) {
+        rpmalloc.initThread();
+        defer rpmalloc.deinitThread();
+    }
 
     const timer_init_status = uv.uv_timer_init(uv.uv_default_loop(), @ptrCast(&game_timer));
     if (timer_init_status != 0)
@@ -130,25 +130,18 @@ pub fn main() !void {
     var gpa = if (is_debug) std.heap.GeneralPurposeAllocator(.{}){} else {};
     defer _ = if (is_debug) gpa.deinit();
 
-    try rpmalloc.init(null, .{});
-    defer rpmalloc.deinit();
+    if (!is_debug) {
+        rpmalloc.init(.{}, .{});
+        defer rpmalloc.deinit();
+    }
 
-    const child_allocator = switch (builtin.mode) {
-        .Debug => gpa.allocator(),
-        else => rpmalloc.allocator(),
-    };
+    const child_allocator = if (is_debug) gpa.allocator() else rpmalloc.allocator();
     allocator = if (build_options.enable_tracy) blk: {
         var tracy_alloc = tracy.TracyAllocator.init(child_allocator);
         break :blk tracy_alloc.allocator();
     } else child_allocator;
 
     behavior_logic.allocator = allocator;
-
-    client_pool = std.heap.MemoryPool(Client).init(allocator);
-    defer client_pool.deinit();
-
-    socket_pool = std.heap.MemoryPool(uv.uv_tcp_t).init(allocator);
-    defer socket_pool.deinit();
 
     try game_data.init(allocator);
     defer game_data.deinit();
@@ -164,6 +157,12 @@ pub fn main() !void {
 
     try login.init(allocator);
     defer login.deinit();
+
+    client_pool = std.heap.MemoryPool(Client).init(allocator);
+    defer client_pool.deinit();
+
+    socket_pool = std.heap.MemoryPool(uv.uv_tcp_t).init(allocator);
+    defer socket_pool.deinit();
 
     login_thread = try std.Thread.spawn(.{}, login.tick, .{});
     defer login_thread.join();

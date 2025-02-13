@@ -2,7 +2,6 @@
     .name = "Kingdom Shared",
     .version = "1.0.0",
     .dependencies = .{
-        .rpmalloc = .{ .path = "libs/rpmalloc" },
         .system_sdk = .{ .path = "libs/system-sdk" },
         .ztracy = .{ .path = "libs/ztracy" },
         .libuv = .{

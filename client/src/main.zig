@@ -1,31 +1,32 @@
 const std = @import("std");
+const builtin = @import("builtin");
+
+const build_options = @import("options");
+const glfw = @import("zglfw");
+const gpu = @import("zgpu");
+const rpc = @import("rpc");
+const rpmalloc = @import("rpmalloc");
 const shared = @import("shared");
 const network_data = shared.network_data;
 const game_data = shared.game_data;
 const requests = shared.requests;
 const utils = shared.utils;
 const uv = shared.uv;
-const assets = @import("assets.zig");
-const network = @import("network.zig");
-const builtin = @import("builtin");
-const glfw = @import("zglfw");
+const zaudio = @import("zaudio");
 const zstbi = @import("zstbi");
-const input = @import("input.zig");
+
+const assets = @import("assets.zig");
 const camera = @import("camera.zig");
 const map = @import("game/map.zig");
-const element = @import("ui/element.zig");
+const input = @import("input.zig");
+const network = @import("network.zig");
 const render = @import("render/base.zig");
-const tracy = if (build_options.enable_tracy) @import("tracy") else {};
-const zaudio = @import("zaudio");
-const ui_systems = @import("ui/systems.zig");
-const rpc = @import("rpc");
-const dialog = @import("ui/dialogs/dialog.zig");
-const rpmalloc = @import("rpmalloc").RPMalloc(.{});
-const build_options = @import("options");
-const gpu = @import("zgpu");
-
 const Settings = @import("Settings.zig");
+const dialog = @import("ui/dialogs/dialog.zig");
+const element = @import("ui/element.zig");
+const ui_systems = @import("ui/systems.zig");
 
+const tracy = if (build_options.enable_tracy) @import("tracy") else {};
 const AccountData = struct {
     email: []const u8,
     token: u128,
@@ -105,11 +106,10 @@ fn networkCallback(ip: []const u8, port: u16, hello_data: network_data.C2SPacket
 
     if (build_options.enable_tracy) tracy.SetThreadName("Network");
 
-    rpmalloc.initThread() catch |e| {
-        std.log.err("Network thread initialization failed: {}", .{e});
-        return;
-    };
-    defer rpmalloc.deinitThread(true);
+    if (builtin.mode != .Debug) {
+        rpmalloc.initThread();
+        defer rpmalloc.deinitThread();
+    }
 
     server = .{ .hello_data = hello_data };
     defer server.deinit();
@@ -156,11 +156,10 @@ pub fn enterTest(selected_server: network_data.ServerData, char_id: u32, test_ma
 fn renderTick() !void {
     if (build_options.enable_tracy) tracy.SetThreadName("Render");
 
-    rpmalloc.initThread() catch |e| {
-        std.log.err("Render thread initialization failed: {}", .{e});
-        return;
-    };
-    defer rpmalloc.deinitThread(true);
+    if (builtin.mode != .Debug) {
+        rpmalloc.initThread();
+        defer rpmalloc.deinitThread();
+    }
 
     var last_vsync = settings.enable_vsync;
     var fps_time_start: i64 = 0;
@@ -290,8 +289,10 @@ pub fn main() !void {
     var gpa = if (is_debug) std.heap.GeneralPurposeAllocator(.{ .stack_trace_frames = 10 }){} else {};
     defer _ = if (is_debug) gpa.deinit();
 
-    try rpmalloc.init(null, .{});
-    defer rpmalloc.deinit();
+    if (!is_debug) {
+        rpmalloc.init(.{}, .{});
+        defer rpmalloc.deinit();
+    }
 
     const child_allocator = if (is_debug)
         gpa.allocator()
@@ -386,7 +387,7 @@ pub fn main() !void {
         ui_systems.switchScreen(.main_menu);
     }
 
-    glfw.windowHintTyped(.client_api, .no_api);
+    glfw.windowHint(.client_api, .no_api);
     const window = try glfw.Window.create(1280, 720, "Kingdom", null);
     defer window.destroy();
     window.setSizeLimits(1280, 720, -1, -1);
@@ -425,7 +426,7 @@ pub fn main() !void {
     _ = window.setCursorPosCallback(input.mouseMoveEvent);
     _ = window.setMouseButtonCallback(input.mouseEvent);
     _ = window.setScrollCallback(input.scrollEvent);
-    _ = window.setFramebufferSizeCallback(onResize);
+    _ = window.setFramebufferCallback(onResize);
 
     try render.init(gctx, allocator);
     defer render.deinit(allocator);
@@ -478,11 +479,10 @@ fn ready(cli: *rpc) !void {
 fn runRpc(cli: *rpc) void {
     if (build_options.enable_tracy) tracy.SetThreadName("RPC");
 
-    rpmalloc.initThread() catch |e| {
-        std.log.err("RPC thread initialization failed: {}", .{e});
-        return;
-    };
-    defer rpmalloc.deinitThread(true);
+    if (builtin.mode != .Debug) {
+        rpmalloc.initThread();
+        defer rpmalloc.deinitThread();
+    }
 
     cli.run(.{ .client_id = "1223822665748320317" }) catch |e| {
         std.log.err("Setting up RPC failed: {}", .{e});

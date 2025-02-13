@@ -24,7 +24,7 @@ inline fn anyToBytes(val: anytype) []const u8 {
     const type_info = @typeInfo(T);
     return switch (type_info) {
         .array => std.mem.sliceAsBytes(&val),
-        .pointer => if (type_info.pointer.size != .Slice)
+        .pointer => if (type_info.pointer.size != .slice)
             @compileError("You can not serialize a non-slice pointer")
         else
             std.mem.sliceAsBytes(val),
@@ -36,7 +36,7 @@ inline fn bytesToAny(comptime T: type, bytes: []const u8) T {
     const type_info = @typeInfo(T);
     return switch (type_info) {
         .array => std.mem.bytesAsSlice(type_info.array.child, bytes)[0..type_info.array.len].*,
-        .pointer => if (type_info.pointer.size != .Slice)
+        .pointer => if (type_info.pointer.size != .slice)
             @compileError("You can not serialize a non-slice pointer")
         else
             @alignCast(std.mem.bytesAsSlice(type_info.pointer.child, bytes)),
@@ -413,6 +413,13 @@ fn redisCommand(ctx: [*c]c.redisContext, format: [*c]const u8, args: anytype) ?*
 }
 
 pub fn init(ally: std.mem.Allocator) !void {
+    var buf: [std.Random.DefaultCsprng.secret_seed_length]u8 = undefined;
+    std.posix.getrandom(&buf) catch |e| {
+        std.log.err("getrandom() failed: {}. This means that the server is insecure and should not be used in production", .{e});
+        buf = @splat(0);
+    };
+    csprng = .init(buf);
+    
     allocator = ally;
     context = c.redisConnect(settings.redis_ip, settings.redis_port) orelse return error.OutOfMemory;
     if (context.err != 0) {

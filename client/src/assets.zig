@@ -1,12 +1,13 @@
-const zstbi = @import("zstbi");
 const std = @import("std");
-const game_data = @import("shared").game_data;
 const builtin = @import("builtin");
-const zaudio = @import("zaudio");
-const main = @import("main.zig");
+
+const game_data = @import("shared").game_data;
 const glfw = @import("zglfw");
 const pack = @import("turbopack");
+const zaudio = @import("zaudio");
+const zstbi = @import("zstbi");
 
+const main = @import("main.zig");
 const Settings = @import("Settings.zig");
 
 pub const padding = 2;
@@ -332,7 +333,9 @@ fn addCursors(comptime image_name: [:0]const u8, comptime cut_width: u32, compti
         }
 
         const cursor = try glfw.Cursor.create(
-            .{ .w = cut_width, .h = cut_height, .pixels = temp.ptr },
+            cut_width,
+            cut_height,
+            temp,
             cut_width / 2,
             cut_height / 2,
         );

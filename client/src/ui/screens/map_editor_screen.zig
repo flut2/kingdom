@@ -1038,7 +1038,7 @@ pub const MapEditorScreen = struct {
                     if (comptime std.mem.eql(u8, field.name, "object_id"))
                         continue;
 
-                    if (@field(map_tile, field.name) != @as(*const field.type, @ptrCast(@alignCast(field.default_value.?))).*) {
+                    if (@field(map_tile, field.name) != @as(*const field.type, @ptrCast(@alignCast(field.default_value_ptr.?))).*) {
                         const ux: u16 = @intCast(x);
                         const uy: u16 = @intCast(y);
 
@@ -1580,7 +1580,7 @@ pub const MapEditorScreen = struct {
         try stack.append(screen.allocator, .{ .x1 = x, .x2 = x, .y = y - 1, .dy = -1 });
 
         while (stack.items.len > 0) {
-            const pop = stack.pop();
+            const pop = stack.pop().?;
             var px = pop.x1;
 
             if (inside(screen, places.items, px, pop.y, layer, current_id)) {

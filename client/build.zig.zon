@@ -34,6 +34,10 @@
             .url = "git+https://github.com/flut2/turbopack.git#afeb5e792e19043aea738ff0315e07047dc64dd6",
             .hash = "1220436f7fbbe4886f98313128e2fc0291bba801229429e8ad0a3de47360851761fe",
         },
+        .rpmalloc = .{
+            .url = "git+https://github.com/flut2/rpmalloc-zig.git#f440339324dac35ea262abdce8a47b36c3a7a612",
+            .hash = "12203f2b4ced453e6117490ba108a0b7cac6d5b3ec972a26093e4725f1b395bff3b2",
+        },
     },
     .paths = .{
         "build.zig",

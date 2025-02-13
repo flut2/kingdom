@@ -20,7 +20,7 @@ pub const PacketWriter = struct {
         const T = @TypeOf(value);
         const type_info = @typeInfo(T);
 
-        if (type_info == .pointer and (type_info.pointer.size == .Slice or type_info.pointer.size == .Many)) {
+        if (type_info == .pointer and (type_info.pointer.size == .slice or type_info.pointer.size == .many)) {
             self.write(@as(u16, @intCast(value.len)), allocator);
             for (value) |val|
                 self.write(val, allocator);

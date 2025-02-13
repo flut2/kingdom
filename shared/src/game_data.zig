@@ -194,7 +194,7 @@ pub fn jsonParseWithHex(comptime T: type, allocator: std.mem.Allocator, source: 
     }
     inline for (@typeInfo(T).@"struct".fields, 0..) |field, i| {
         if (!fields_seen[i]) {
-            if (field.default_value) |default_ptr| {
+            if (field.default_value_ptr) |default_ptr| {
                 const default = @as(*align(1) const field.type, @ptrCast(default_ptr)).*;
                 @field(r, field.name) = default;
             } else {

@@ -41,8 +41,16 @@ pub fn build(b: *std.Build) !void {
         });
         exe.root_module.linkLibrary(shared_dep.artifact("libuv"));
 
+        if (optimize != .Debug) {
+            const rpmalloc_dep = b.dependency("rpmalloc", .{
+                .target = target,
+                .optimize = optimize,
+            });
+            exe.root_module.addImport("rpmalloc", rpmalloc_dep.module("rpmalloc"));
+            exe.root_module.linkLibrary(rpmalloc_dep.artifact("rpmalloc-lib"));
+        }
+
         exe.root_module.addImport("shared", shared_dep.module("shared"));
-        exe.root_module.addImport("rpmalloc", shared_dep.module("rpmalloc"));
         if (enable_tracy) exe.root_module.addImport("tracy", shared_dep.module("tracy"));
 
         exe.root_module.addImport("httpz", b.dependency("httpz", .{

@@ -106,7 +106,7 @@ pub fn save(self: Self) !void {
 
 pub fn resetToDefaults(self: *Self) void {
     inline for (@typeInfo(Self).@"struct".fields) |field| {
-        @field(self, field.name) = @as(*const field.type, @ptrCast(@alignCast(field.default_value orelse
+        @field(self, field.name) = @as(*const field.type, @ptrCast(@alignCast(field.default_value_ptr orelse
             @panic("All settings need a default value, but it wasn't found")))).*;
     }
 }

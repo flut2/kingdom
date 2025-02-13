@@ -28,7 +28,7 @@ pub fn write(
             const T = @TypeOf(inner_value);
             const type_info = @typeInfo(T);
             const is_array = type_info == .array;
-            const is_slice = type_info == .pointer and type_info.pointer.size == .Slice;
+            const is_slice = type_info == .pointer and type_info.pointer.size == .slice;
             const is_condition = T == utils.Condition;
             const cond_int = if (is_condition) type_info.@"struct".backing_integer.? else {};
 
