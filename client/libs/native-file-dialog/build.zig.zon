@@ -1,5 +1,5 @@
 .{
-    .name = "native-file-dialog",
+    .name = .native_file_dialog,
     .version = "1.0.0",
     .dependencies = .{},
     .paths = .{

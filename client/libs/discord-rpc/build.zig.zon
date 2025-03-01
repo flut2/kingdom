@@ -1,5 +1,5 @@
 .{
-    .name = "discord-rpc",
+    .name = .discord_rpc,
     .version = "1.0.0",
     .dependencies = .{},
     .paths = .{

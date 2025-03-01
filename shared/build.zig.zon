@@ -1,12 +1,12 @@
 .{
-    .name = "Kingdom Shared",
+    .name = .kingdom_shared,
     .version = "1.0.0",
     .dependencies = .{
         .system_sdk = .{ .path = "libs/system-sdk" },
         .ztracy = .{ .path = "libs/ztracy" },
         .libuv = .{
             .url = "git+https://github.com/libuv/libuv.git#27134547ff7754107e2c490e0c2f0ed18c05dae2",
-            .hash = "122023c580b23f2c7e08dbcab26190ac4b503f1516f702013821475817289088b585",
+            .hash = "N-V-__8AAA1GQwAjxYCyPyx-CNvKsmGQrEtQPxUW9wIBOCFH",
         },
     },
     .paths = .{
