@@ -22,4 +22,5 @@
         "build.zig.zon",
         "src/",
     },
+    .minimum_zig_version = "0.14.0",
 }

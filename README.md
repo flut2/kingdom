@@ -2,7 +2,7 @@
 
 **Requirements:**
 - A Redis-compatible server running (or Dragonfly if toggled on in the server build options)
-- Latest Zig master (last tested with update to 0.14.0-dev.3445+6c3cbb0c8)
+- Zig 0.14.0
 
 **Usage:**
 
